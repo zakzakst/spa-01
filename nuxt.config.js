@@ -1,4 +1,3 @@
-
 export default {
   /*
   ** Nuxt rendering mode
@@ -84,4 +83,7 @@ export default {
       },
     ]
   },
+  router: {
+    linkActiveClass: 'is-active',
+  }
 }

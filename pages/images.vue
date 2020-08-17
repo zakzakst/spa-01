@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    画像一覧
   </div>
 </template>
 
