@@ -29,6 +29,10 @@ export default {
   ** Global CSS
   */
   css: [
+    '@/assets/css/normalize.css',
+    '@/assets/sass/bulma-customize.scss',
+    '@/assets/sass/common.scss',
+    '@/assets/sass/themes.scss',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -50,9 +54,16 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
+    'nuxt-fontawesome',
     '@nuxtjs/axios',
   ],
+  styleResources: {
+    scss: [
+      '@/assets/sass/variable.scss'
+    ]
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -63,5 +74,14 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-  }
+  },
+  fontawesome: {
+    component: 'fa',
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      },
+    ]
+  },
 }
