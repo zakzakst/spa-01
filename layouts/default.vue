@@ -14,9 +14,9 @@
 <script>
 import SideNav from '~/components/SideNav';
 export default {
-  components: [
+  components: {
     SideNav,
-  ]
+  }
 }
 </script>
 
