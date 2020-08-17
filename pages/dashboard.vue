@@ -19,6 +19,9 @@
           </ul>
         </div>
         <!-- チャートの内容 -->
+        <chart-js-bar v-if="currentChart === 'chart-bar'" ref="chartBar" :chartdata="chartBarData" :options="chartBarOptions" />
+        <chart-js-line v-if="currentChart === 'chart-line'" ref="chartLine" :chartdata="chartLineData" :options="chartLineOptions" />
+        <chart-js-pie v-if="currentChart === 'chart-pie'" ref="chartPie" :chartdata="chartPieData" :options="chartPieOptions" />
       </div>
     </section>
     <section class="card mb-4">
@@ -46,27 +49,78 @@
 </template>
 
 <script>
+import ChartJsBar from '@/components/ChartJsBar'
+import ChartJsLine from '@/components/ChartJsLine'
+import ChartJsPie from '@/components/ChartJsPie'
+
 export default {
   data() {
     return {
       chartItems: [
         {
-          id: 'chart1',
+          id: 'chart-bar',
           label: '売上',
           icon: ['fas', 'chart-bar'],
+          targetRef: 'chartBar',
         },
         {
-          id: 'chart2',
+          id: 'chart-line',
           label: '前年比',
           icon: ['fas', 'chart-line'],
+          targetRef: 'chartLine',
         },
         {
-          id: 'chart3',
+          id: 'chart-pie',
           label: 'シェア',
           icon: ['fas', 'chart-pie'],
+          targetRef: 'chartPie',
         },
       ],
-      currentChart: 'chart1',
+      currentChart: '',
+      chartBarData: {
+        labels: ['January', 'February', 'March', 'April'],
+        datasets: [
+          {
+            label: ['Data One'],
+            backgroundColor: '#3273dc',
+            data: [40, 30, 10, 20]
+          },
+        ]
+      },
+      chartBarOptions: {
+        responsive: true,
+        maintainAspectRatio: false
+      },
+      chartLineData: {
+        labels: ['January', 'February', 'March', 'April'],
+        datasets: [
+          {
+            label: ['Data One'],
+            backgroundColor: '#3273dc',
+            borderColor: '#3273dc',
+            fill: false,
+            data: [40, 30, 10, 20]
+          },
+        ]
+      },
+      chartLineOptions: {
+        responsive: true,
+        maintainAspectRatio: false
+      },
+      chartPieData: {
+        labels: ['January', 'February', 'March', 'April'],
+        datasets: [
+          {
+            label: 'Data One',
+            backgroundColor: ['#3273dc', '#00d1b2', '#f14668', '#363636'],
+            data: [40, 30, 10, 20]
+          },
+        ]
+      },
+      chartPieOptions: {
+        responsive: true,
+        maintainAspectRatio: false
+      },
       messageItems: [
         {
           id: 'message1',
@@ -83,9 +137,27 @@ export default {
       ],
     }
   },
+  components: {
+    ChartJsBar,
+    ChartJsLine,
+    ChartJsPie,
+  },
   methods: {
     changeChart(id) {
       this.currentChart = id;
+    }
+  },
+  mounted() {
+    this.currentChart = 'chart-bar';
+  },
+  watch: {
+    currentChart(value) {
+      const chart = this.chartItems.find(item => {
+        return item.id === value;
+      });
+      setTimeout(() => {
+        this.$refs[chart.targetRef].init();
+      }, 0);
     }
   }
 }
