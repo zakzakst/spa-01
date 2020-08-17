@@ -1,5 +1,5 @@
 <template>
-  <div class="l-wrapper">
+  <div class="mx-4 my-4">
     <div class="columns">
       <div class="column is-one-quarter">
         <side-nav />
@@ -19,9 +19,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.l-wrapper {
-  padding: $space--sm;
-}
-</style>
