@@ -1,6 +1,6 @@
 <template>
   <nav class="panel">
-    <p class="panel-heading">メニュー</p>
+    <!-- <p class="panel-heading">メニュー</p> -->
     <nuxt-link v-for="item in navItems" :key="item.link" :to="item.link" class="panel-block">
       <span class="panel-icon">
         <fa :icon="item.icon" />

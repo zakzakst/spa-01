@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title">ユーザー一覧</h1>
-    <div>
+    <div class="mb-4">
       <button class="button is-primary" @click="createUser">
         <span class="icon">
           <fa :icon="['fas', 'plus']" />
